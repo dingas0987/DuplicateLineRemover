@@ -1,4 +1,5 @@
 from itertools import islice
+import linecache
 
 #location = "test_json1.json"
 location = "test.txt"
@@ -28,32 +29,48 @@ location = "test.txt"
 def search_dupe(directory):
     dupe_count = 0 
     inner_file_line = 0
-    current_char_pos = 0
+    current_char_pos_outside = 0
+    current_char_pos_inside = 0
+    inner_counter = 1
+    outter_counter = 0
     with open(directory, "r+", encoding='utf-8', errors='ignore') as read_file:
         for line in read_file:
-            current_char_pos = current_char_pos + len(line) + 1
-            print("current char position:", current_char_pos)
-            print("current line:", line)
-            with open(directory, "r+", encoding='utf-8', errors='ignore') as inner_file:
-                dupe_line = inner_file.readline()
-                while dupe_line:
-                    inner_file_pos = inner_file.tell()
-                    print("current line in dupe file:", dupe_line)
-                    print("inner file position:",inner_file_pos)
-                    if (line == dupe_line) and (current_char_pos != inner_file_pos):
-                        dupe_count +=1
-                        print("there is a dupe spotted")
-                        print("original line:", line)
-                        print("dupe line", dupe_line)
-                        #delete_line(directory, inner_file_line)
-                    #inner_file_line+=1 
-                    dupe_line = inner_file.readline()
-                    inner_file_pos = inner_file.tell()
-                    
+            current_char_pos_outside = current_char_pos_outside + len(line) + 1
+            #current_char_pos = read_file.tell()
+            print("outside line:", line)
+            print("outside char position:", current_char_pos_outside)
+            inner_file_curr_line = linecache.getline(location, inner_counter)
+            while inner_file_curr_line != '':
+                current_char_pos_inside = current_char_pos_inside + len(inner_file_curr_line) + 1
+                print("inside line:", inner_file_curr_line)
+                print("inside char position:", current_char_pos_inside)   
+                if (inner_file_curr_line == line) and (current_char_pos_outside != current_char_pos_inside):
+                    dupe_count += 1
+                    print("-------------------------------------")
+                    print("dupe spotted")
+                    print("original line:", line)
+                    print("inside line number", inner_counter)
+                    print("duplicate line:", inner_file_curr_line)
+                    delete_line(location, inner_counter - 1)
+                    print("removed")
+                    print("-------------------------------------")
+                    print("\n")
+                    inner_counter -= 2
+                inner_counter += 1
+                inner_file_curr_line = linecache.getline(location, inner_counter)
+                if inner_file_curr_line == '':
+                    break
+            if line == '':
+                break
+            #current_char_pos_inside = 0
+            #current_char_pos_outside = 0
+            print("end")
+            outter_counter += 1
+            #counter = 1
+            #inner_counter += 1
         print("final dupe count:", dupe_count)
-        if dupe_count == 0:
-            print("there are no more dupes")
     read_file.close()
+    print("end")
     
     
 def delete_line(dir, lineno):
