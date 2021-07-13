@@ -30,7 +30,7 @@ def dupe_search(dir, res):
     readfile.close()
 
 
-if __name__ == '__main__':
-    location = 'test.txt'
-    result = 'test1.json'
-    dupe_search(location, result)
+#if __name__ == '__main__':
+#    location = 'test.txt'
+#    result = 'test1.json'
+#    dupe_search(location, result)
