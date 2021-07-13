@@ -1,37 +1,36 @@
-location = 'test_json1.json'
-result = 'tested_json1_result.json'
-#location = "comment_code_data1.json"
-#result = "comment_code_data1_result_2.json"
-
 # Write unique lines to a file
-
 import os.path
 from os import path
-
-def remove_bottom_blank(file):
-    with open(file, 'rb+') as file_out:
-        file_out.seek(-2, os.SEEK_END)
-        file_out.truncate()
-
 def writeToFile(file, text):
     with open(file, 'a', encoding='utf-8') as newfile:
         newfile.write(text)
         newfile.close()
 
+#o(n) space complexity, O(n^2) time complexity
 def dupe_search(dir, res):
     dupe_counter = 0
+    file = open(dir, 'r+', encoding='utf-8')
+    if(file.read()[-1] != '\n'):
+        file.write("\n")
+
+    file = open(dir, 'r+', encoding='utf-8')
+    file.read()
     with open(dir, 'r+', encoding='utf-8') as readfile:
-        readfile.write('\n')
         for line in readfile:
             if not path.exists(res):
-                with open(res, 'w', encoding='utf-8') as createfile:
+                with open(res, 'w', encoding='utf-8') as createfile: #result file
                     createfile.close()
-            if line.lower() in open(res, encoding='utf-8').read().lower():
+
+            file_contents = open(res, encoding='utf-8').read()
+            if line in file_contents:
                 dupe_counter += 1
             else:
                 writeToFile(res, line)
     print("# of dupes:", dupe_counter)
-    remove_bottom_blank(dir)
     readfile.close()
 
-dupe_search(location, result)
+
+if __name__ == '__main__':
+    location = 'test.txt'
+    result = 'test1.json'
+    dupe_search(location, result)
