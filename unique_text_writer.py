@@ -24,8 +24,8 @@ def dupe_search(dir, res):
         readfile.write('\n')
         for line in readfile:
             if not path.exists(res):
-                    with open(res, 'w', encoding='utf-8') as createfile:
-                        createfile.close()
+                with open(res, 'w', encoding='utf-8') as createfile:
+                    createfile.close()
             if line.lower() in open(res, encoding='utf-8').read().lower():
                 dupe_counter += 1
             else:
