@@ -20,7 +20,8 @@ def writeToFile(file, text):
 
 def dupe_search(dir, res):
     dupe_counter = 0
-    with open(dir, 'r', encoding='utf-8') as readfile:
+    with open(dir, 'r+', encoding='utf-8') as readfile:
+        readfile.write('\n')
         for line in readfile:
             if not path.exists(res):
                     with open(res, 'w', encoding='utf-8') as createfile:
