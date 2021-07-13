@@ -1,5 +1,5 @@
 location = 'test_json1.json'
-result = 'tested_json1_result_1.json'
+result = 'tested_json1_result.json'
 #location = "comment_code_data1.json"
 #result = "comment_code_data1_result_2.json"
 
