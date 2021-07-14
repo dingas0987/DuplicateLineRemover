@@ -6,5 +6,5 @@ if __name__ == '__main__':
     result = 'text_result.txt'
     combine_files(files, result)
 
-    #no_dupe_res = 'no_dupe_text_result.txt'
-    #dupe_search(result, no_dupe_res)
+    no_dupe_res = 'no_dupe_text_result.txt'
+    dupe_search(result, no_dupe_res)
