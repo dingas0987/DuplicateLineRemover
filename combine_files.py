@@ -21,7 +21,7 @@ def writeToFile(file, text):
         newfile.write(text)
         newfile.close()
 
-if __name__ == '__main__':
-    files = ["text1.txt", "text2.txt", "text3.txt"]
-    result = "text_result.txt"
-    combine_files(files, result)
+#if __name__ == '__main__':
+#    files = ["text1.txt", "text2.txt", "text3.txt"]
+#    result = "text_result.txt"
+#    combine_files(files, result)
