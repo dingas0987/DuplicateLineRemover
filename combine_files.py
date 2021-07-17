@@ -3,15 +3,15 @@ from os import path
 
 def combine_files(filelist, res):
     if not path.exists(res):
-        with open(res, 'w', encoding='utf-8') as createfile: 
+        with open(res, 'w', encoding='ISO-8859-1', errors='ignore') as createfile: 
             createfile.close()
-    with open(res, 'w', encoding='utf-8') as outfile:
+    with open(res, 'w', encoding='ISO-8859-1', errors='ignore') as outfile:
         for fname in filelist:
-            with open(fname, 'r+', encoding='utf-8') as input_file:
+            with open(fname, 'r+', encoding='ISO-8859-1', errors='ignore') as input_file:
                 if(input_file.read()[-1] != '\n'):
                     input_file.write("\n")
                     input_file.close()
-            with open(fname) as infile:
+            with open(fname, encoding='ISO-8859-1', errors='ignore') as infile:
                 try:
                     for line in infile:
                         outfile.write(line)
@@ -22,7 +22,7 @@ def combine_files(filelist, res):
     outfile.close()
 
 def writeToFile(file, text):
-    with open(file, 'a', encoding='utf-8') as newfile:
+    with open(file, 'a', encoding='ISO-8859-1', errors='ignore') as newfile:
         newfile.write(text)
         newfile.close()
 
