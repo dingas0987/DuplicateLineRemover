@@ -139,6 +139,9 @@ test_json1.txt
 test_result.txt
 sorted_test_json1.json
 comment_code_data1.json
+comment_code_data2.json
+comment_code_data_result.json
+no_dupe_comment_code_data_result.json
 comment_code_data1_result.json
 possible solution 4.txt
 e.txt
@@ -153,3 +156,13 @@ test1.json
 text_result.txt
 bad.txt
 no_dupe_text_result.txt
+test1.json
+test2.json
+test_result.json
+combined_comment_code_data_result.json
+comment_code_data_result.json
+culprit.txt
+send help.txt
+trash files/
+.idea/
+comment_code_data1_res.json
